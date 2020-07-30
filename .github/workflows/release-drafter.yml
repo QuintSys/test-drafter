@@ -1,0 +1,19 @@
+name: Update Releaseinfo
+on:
+  push:
+    # branches to consider in the event; optional, defaults to all
+    branches:
+      - master
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: calculate next version
+        id: version
+        uses: patrickjahns/version-drafter-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: echo calculated version
+        run: |
+          echo "version: ${{ steps.version.outputs.next-version }}"
