@@ -9,6 +9,8 @@ jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
+      - name: Set current date as env variable
+        run: echo "::set-env name=DATE_TEMPLATE::$(date +'%Y-%m-%d')"
       - uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
