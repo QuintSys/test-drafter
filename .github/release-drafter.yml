@@ -11,10 +11,18 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: 'Changed'
-    labels:
-      - 'change'
-      - 'chore'
+    labels: 'change'
+  - title: 'Dependency updates'
+    label: 'dependencies'
+  - title: 'Documentation updates'
+    label: 'documentation'
+  - title: 'Maintenance'
+    labels: 'internal'
+  - title: 'Tests'
+    labels: 'test'      
+      
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+
 version-resolver:
   major:
     labels:
@@ -26,5 +34,19 @@ version-resolver:
     labels:
       - 'patch'
   default: patch
+  
+exclude-labels:
+  - reverted
+  - no-changelog
+  - skip-changelog
+  - invalid
+  
 template: |
+  ## [$RESOLVED_VERSION] - $DATE_TEMPLATE
   $CHANGES
+
+replacers:
+  - search: '/CVE-(\d{4})-(\d+)/g'
+    replace: 'https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-$1-$2'
+  - search: '@dependabot-preview'
+    replace: '@dependabot'
