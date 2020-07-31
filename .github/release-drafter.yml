@@ -16,10 +16,7 @@ categories:
   - title: 'Documentation updates'
     label: 'documentation'
   - title: 'Maintenance'
-    labels: 'internal'
-    
-exclude-labels:
-  - 'skip-changelog'    
+    labels: 'internal'  
       
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 
